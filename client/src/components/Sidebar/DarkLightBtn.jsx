@@ -1,19 +1,21 @@
-import {useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import {changeTheme} from "../../redux/DarkLightSlice/themeSlice"
 
 const DarkLightBtn = () => {
-	const [enabled, setEnabled] = useState(false)
+	const theme = useSelector((state) => state.theme.enabled)
+	const dispatch = useDispatch()
 
 	return (
 		<div>
 			<div
-				onClick={() => setEnabled(!enabled)}
+				onClick={() => dispatch(changeTheme(!theme))}
 				className={`${
-					enabled ? "bg-slate-500" : "bg-zinc-500"
+					theme ? "bg-slate-500" : "bg-zinc-500"
 				} inline-flex h-[18px] w-[38px] cursor-pointer shrink-0 rounded-full border-2 border-transparent`}
 			>
 				<span
 					className={`${
-						enabled ? "translate-x-4" : "translate-x-0"
+						theme ? "translate-x-4" : "translate-x-0"
 					} h-[14px] pointer-events-none w-[14px] inline-block rounded-full bg-white ring-0 transition duration-200 ease-in-out`}
 				></span>
 			</div>
