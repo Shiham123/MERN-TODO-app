@@ -18,6 +18,9 @@ export default {
 				"dark-font-secondary": "#77848d",
 				"dark-icon-secondary": "#8887c5",
 			},
+			fontFamily: {
+				Lexend: ["Lexend Deca", "sans-serif"],
+			},
 		},
 	},
 	plugins: [],
