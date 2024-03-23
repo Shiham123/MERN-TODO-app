@@ -21,6 +21,9 @@ export default {
 			fontFamily: {
 				Lexend: ["Lexend Deca", "sans-serif"],
 			},
+			boxShadow: {
+				one: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+			},
 		},
 	},
 	plugins: [],
