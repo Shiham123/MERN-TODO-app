@@ -1,11 +1,14 @@
+import PerButton from "./PerButton"
+import {AiFillCalendar, AiFillStar, AiOutlineCalendar, AiOutlinePicture} from "react-icons/ai"
+
 const TodoButton = () => {
 	return (
 		<div>
-			<div className="flex flex-col justify-start items-start my-4 gap-[10px] border-2 border-black">
-				<button className="text-[#7a8aa4] font-Lexend bg-[#d3dee3]">All</button>
-				<button className="text-[#7a8aa4] font-Lexend">Starred</button>
-				<button className="text-[#7a8aa4] font-Lexend">Today</button>
-				<button className="text-[#7a8aa4] font-Lexend">Week</button>
+			<div className="flex flex-col justify-start items-start my-4 gap-[10px]">
+				<PerButton text="all" icon={AiOutlinePicture} />
+				<PerButton text="starred" icon={AiFillStar} />
+				<PerButton text="Today" icon={AiFillCalendar} />
+				<PerButton text="Week" icon={AiOutlineCalendar} />
 			</div>
 		</div>
 	)
