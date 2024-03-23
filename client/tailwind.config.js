@@ -5,24 +5,13 @@ export default {
 			colors: {
 				"light-bg-primary": "#e4f0fa",
 				"light-bg-secondary": "#e6eef8",
-				"blue-gray": "#2b3c5b",
-				rose: "#f8917e",
-				levender: "#978aa3",
-				indigo: "#4b4961",
-				// dark colors
-				"dark-bg-primary": "#121215",
-				"dark-bg-secondary": "#18181c",
-				"dark-primary": "#dfe0fb",
-				"dark-secondary": "#7c57f7",
-				"dark-font-primary": "#7f8fd2",
-				"dark-font-secondary": "#77848d",
-				"dark-icon-secondary": "#8887c5",
 			},
 			fontFamily: {
 				Lexend: ["Lexend Deca", "sans-serif"],
 			},
 			boxShadow: {
 				one: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+				two: "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
 			},
 		},
 	},
