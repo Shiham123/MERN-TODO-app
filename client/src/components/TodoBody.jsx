@@ -1,8 +1,13 @@
-import UseTheme from "../hooks/UseTheme"
+import {useSelector} from "react-redux"
 
 const TodoBody = () => {
-	const {themeSelection} = UseTheme()
-	return <div className={`shadow-one ${themeSelection("bg", "secondary")}`}>this is todo body</div>
+	const theme = useSelector((state) => state.theme.enabled)
+
+	return (
+		<div className={`${theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"} shadow-one`}>
+			this is todo body
+		</div>
+	)
 }
 
 export default TodoBody
