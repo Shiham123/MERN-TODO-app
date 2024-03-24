@@ -1,21 +1,11 @@
-import {useSelector} from "react-redux"
+import useThemeToggle from "../hooks/useThemeToggle"
 
 const Heading = () => {
-	const theme = useSelector((state) => state.theme.enabled)
+	const {headingColor} = useThemeToggle()
 	return (
 		<div className="my-8">
-			<span
-				className={`text-5xl font-Lexend ${theme ? "text-dark-text-primary" : "text-text-primary"}`}
-			>
-				to
-			</span>
-			<span
-				className={`text-5xl font-Lexend ${
-					theme ? "text-dark-text-secondary" : "text-text-secondary"
-				}`}
-			>
-				do.
-			</span>
+			<span className={`text-5xl font-Lexend ${headingColor("text", "primary")}`}>to</span>
+			<span className={`text-5xl font-Lexend ${headingColor("text", "secondary")}`}>do.</span>
 		</div>
 	)
 }

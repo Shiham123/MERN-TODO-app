@@ -1,15 +1,16 @@
-import {useSelector} from "react-redux"
 import Heading from "./components/Heading"
 import TodoContainer from "./components/TodoContainer"
+import useThemeToggle from "./hooks/useThemeToggle"
 
 const App = () => {
-	const theme = useSelector((state) => state.theme.enabled)
+	const {themeSelection} = useThemeToggle()
 
 	return (
 		<div
-			className={`${
-				theme ? "bg-dark-bg-primary" : "bg-light-bg-primary"
-			} min-h-screen flex flex-col justify-center items-center`}
+			className={`${themeSelection(
+				"bg",
+				"primary",
+			)} min-h-screen flex flex-col justify-center items-center`}
 		>
 			<Heading />
 			<TodoContainer />
