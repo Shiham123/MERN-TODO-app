@@ -4,7 +4,7 @@ const TodoBody = () => {
 	const theme = useSelector((state) => state.theme.enabled)
 
 	return (
-		<div className={`${theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"} shadow-one`}>
+		<div className={`${theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"} shadow-one w-[700px]`}>
 			this is todo body
 		</div>
 	)
