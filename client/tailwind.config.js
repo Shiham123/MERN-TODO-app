@@ -5,6 +5,12 @@ export default {
 			colors: {
 				"light-bg-primary": "#e4f0fa",
 				"light-bg-secondary": "#e6eef8",
+				"dark-bg-primary": "#121215",
+				"dark-bg-secondary": "#18181c",
+				"text-primary": "#2b3c5b",
+				"text-secondary": "#f8917e",
+				"dark-text-primary": "#dfe0fb",
+				"dark-text-secondary": "#7f5bf7",
 			},
 			fontFamily: {
 				Lexend: ["Lexend Deca", "sans-serif"],
