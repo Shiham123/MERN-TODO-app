@@ -1,7 +1,7 @@
-import useThemeToggle from "../hooks/useThemeToggle"
+import UseThemeToggle from "../hooks/UseThemeToggle"
 
 const TodoBody = () => {
-	const {themeSelection} = useThemeToggle()
+	const { themeSelection } = UseThemeToggle()
 	return <div className={`shadow-one ${themeSelection("bg", "secondary")}`}>this is todo body</div>
 }
 

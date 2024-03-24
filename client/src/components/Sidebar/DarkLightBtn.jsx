@@ -1,11 +1,11 @@
-import {useDispatch, useSelector} from "react-redux"
-import {changeTheme} from "../../redux/DarkLightSlice/themeSlice"
-import useThemeToggle from "../../hooks/useThemeToggle"
+import { useDispatch, useSelector } from "react-redux"
+import { changeTheme } from "../../redux/DarkLightSlice/themeSlice"
+import UseThemeToggle from "../../hooks/UseThemeToggle"
 
 const DarkLightBtn = () => {
 	const theme = useSelector((state) => state.theme.enabled)
 	const dispatch = useDispatch()
-	const {toggleBtn} = useThemeToggle()
+	const { toggleBtn } = UseThemeToggle()
 
 	return (
 		<div>

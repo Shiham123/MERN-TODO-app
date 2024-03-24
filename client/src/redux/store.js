@@ -4,7 +4,7 @@ import themeReducer from "./DarkLightSlice/themeSlice"
 
 const store = configureStore({
 	reducer: {theme: themeReducer},
-	middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger],
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 
 export default store

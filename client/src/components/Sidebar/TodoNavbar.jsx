@@ -1,10 +1,10 @@
-import useThemeToggle from "../../hooks/useThemeToggle"
+import UseThemeToggle from "../../hooks/UseThemeToggle"
 import DarkLightBtn from "./DarkLightBtn"
 import TodoButton from "./TodoButton"
 import TodoOptions from "./TodoOptions"
 
 const TodoNavbar = () => {
-	const {themeSelection} = useThemeToggle()
+	const { themeSelection } = UseThemeToggle()
 	return (
 		<div className={`${themeSelection("bg", "secondary")}`}>
 			{/* div one */}

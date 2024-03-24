@@ -1,7 +1,7 @@
-import useThemeToggle from "../hooks/useThemeToggle"
+import UseThemeToggle from "../hooks/UseThemeToggle"
 
 const Heading = () => {
-	const {headingColor} = useThemeToggle()
+	const { headingColor } = UseThemeToggle()
 	return (
 		<div className="my-8">
 			<span className={`text-5xl font-Lexend ${headingColor("text", "primary")}`}>to</span>
