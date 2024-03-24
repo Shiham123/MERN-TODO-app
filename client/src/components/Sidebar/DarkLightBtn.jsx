@@ -10,13 +10,15 @@ const DarkLightBtn = () => {
 			<div
 				onClick={() => dispatch(changeTheme(!theme))}
 				className={`${
-					theme ? "bg-slate-500" : "bg-zinc-500"
-				} inline-flex h-[18px] w-[38px] cursor-pointer shrink-0 rounded-full border-2 border-transparent`}
+					theme
+						? "bg-slate-500 hover:bg-dark-text-secondary transition-all duration-200"
+						: "bg-slate-300 hover:bg-text-secondary transition-all duration-200"
+				} inline-flex h-[18px] w-[38px] cursor-pointer shrink-0 rounded-full border-4 border-transparent`}
 			>
 				<span
 					className={`${
 						theme ? "translate-x-4" : "translate-x-0"
-					} h-[14px] pointer-events-none w-[14px] inline-block rounded-full bg-white ring-0 transition duration-200 ease-in-out`}
+					} h-[10px] pointer-events-none w-[10px] inline-block rounded-full bg-white ring-0 transition duration-200 ease-in-out`}
 				></span>
 			</div>
 		</div>
