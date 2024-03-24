@@ -1,9 +1,9 @@
 import Heading from "../components/Heading"
 import TodoContainer from "../components/TodoContainer"
-import UseThemeToggle from "../hooks/UseThemeToggle"
+import UseTheme from "../hooks/UseTheme"
 
 const HomePage = () => {
-	const { themeSelection } = UseThemeToggle()
+	const {themeSelection} = UseTheme()
 
 	return (
 		<div

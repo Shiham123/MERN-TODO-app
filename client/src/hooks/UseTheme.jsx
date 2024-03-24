@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux"
+import {useSelector} from "react-redux"
 
-const UseThemeToggle = () => {
+const UseTheme = () => {
 	const theme = useSelector((state) => state.theme.enabled)
 
 	const themeSelection = (text, character) => {
@@ -15,7 +15,7 @@ const UseThemeToggle = () => {
 		return theme ? `${para}-dark-text-secondary` : `${para}-text-secondary`
 	}
 
-	return { toggleBtn, headingColor, themeSelection }
+	return {toggleBtn, headingColor, themeSelection}
 }
 
-export default UseThemeToggle
+export default UseTheme
