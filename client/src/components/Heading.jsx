@@ -2,11 +2,13 @@ import {useDispatch, useSelector} from "react-redux"
 import {LuAlignJustify} from "react-icons/lu"
 import {LiaTimesSolid} from "react-icons/lia"
 import {useEffect} from "react"
-import {changeViewport} from "../redux/DarkLightSlice/themeSlice"
+
+import {changeIcon, changeViewport} from "../redux/DarkLightSlice/themeSlice"
 
 const Heading = () => {
 	const theme = useSelector((state) => state.theme.enabled)
-	const viewport = useSelector((state) => state.theme.viewport)
+	const closeNavbar = useSelector((state) => state.theme.closeNavbar)
+
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -40,10 +42,15 @@ const Heading = () => {
 			</div>
 			{/* div two */}
 			<div>
-				{viewport ? (
+				{closeNavbar ? (
 					<LiaTimesSolid size={40} color={theme ? "#7f5bf7" : "#f8917e"} />
 				) : (
-					<LuAlignJustify size={40} color={theme ? "#7f5bf7" : "#f8917e"} />
+					<LuAlignJustify
+						className="cursor-pointer"
+						onClick={() => dispatch(changeViewport(false), changeIcon(true))}
+						size={40}
+						color={theme ? "#7f5bf7" : "#f8917e"}
+					/>
 				)}
 			</div>
 		</div>
