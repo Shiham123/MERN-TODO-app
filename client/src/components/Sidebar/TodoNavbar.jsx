@@ -5,13 +5,15 @@ import TodoOptions from "./TodoOptions"
 import AddProjects from "./AddProjects"
 
 const TodoNavbar = () => {
-	const theme = useSelector((state) => state.theme.enabled)
+	const {enabled, closeNavbar} = useSelector((state) => state.theme)
 
 	return (
 		<div
 			className={`${
-				theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
-			} rounded-2xl shadow-one md:hidden sm:hidden xs:hidden lg:block xl:block 2xl:block`}
+				enabled ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
+			} rounded-2xl shadow-one lg:block xl:block 2xl:block ${
+				closeNavbar ? "md:block sm:block xs:block" : "md:hidden sm:hidden xs:hidden"
+			}`}
 		>
 			{/* div one */}
 			<div className="w-[300px] px-4 py-2">
