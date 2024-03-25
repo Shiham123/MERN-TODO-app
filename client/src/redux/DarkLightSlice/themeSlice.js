@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = {enabled: false, viewport: false, closeNavbar: false}
+const initialState = {enabled: false, closeNavbar: false}
 
 const themeSlice = createSlice({
 	name: "theme",
@@ -9,11 +9,6 @@ const themeSlice = createSlice({
 		changeTheme: (state, action) => {
 			const {payload} = action
 			state.enabled = payload
-		},
-
-		changeViewport: (state, action) => {
-			const {payload} = action
-			state.viewport = payload
 		},
 
 		changeIcon: (state, {payload}) => {
