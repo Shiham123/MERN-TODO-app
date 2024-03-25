@@ -6,7 +6,7 @@ import {useEffect} from "react"
 import {changeIcon, changeViewport} from "../redux/DarkLightSlice/themeSlice"
 
 const Heading = () => {
-	const {enabled, viewport} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -41,18 +41,17 @@ const Heading = () => {
 				</span>
 			</div>
 			{/* div two */}
-			<div>
-				{viewport && (
-					<>
-						<LiaTimesSolid size={40} color={enabled ? "#7f5bf7" : "#f8917e"} />
-						<LuAlignJustify
-							className="cursor-pointer"
-							onClick={() => dispatch(changeViewport(false), changeIcon(true))}
-							size={40}
-							color={enabled ? "#7f5bf7" : "#f8917e"}
-						/>
-					</>
-				)}
+			<div className="md:block sm:block xs:block lg:hidden xl:hidden 2xl:hidden">
+				<LiaTimesSolid
+					className="cursor-pointer"
+					size={40}
+					color={enabled ? "#7f5bf7" : "#f8917e"}
+				/>
+				<LuAlignJustify
+					className="cursor-pointer"
+					size={40}
+					color={enabled ? "#7f5bf7" : "#f8917e"}
+				/>
 			</div>
 		</div>
 	)

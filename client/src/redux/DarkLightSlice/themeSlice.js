@@ -16,7 +16,7 @@ const themeSlice = createSlice({
 			state.viewport = payload
 		},
 
-		changeIcon: (state, {payload}) => {
+		changeIcon: (state, {payload}) => {     
 			state.closeNavbar = payload
 		},
 	},

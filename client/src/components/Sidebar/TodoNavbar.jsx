@@ -9,7 +9,9 @@ const TodoNavbar = () => {
 
 	return (
 		<div
-			className={`${theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"} rounded-2xl shadow-one`}
+			className={`${
+				theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
+			} rounded-2xl shadow-one md:hidden sm:hidden xs:hidden lg:block xl:block 2xl:block`}
 		>
 			{/* div one */}
 			<div className="w-[300px] px-4 py-2">
