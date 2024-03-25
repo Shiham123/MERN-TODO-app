@@ -1,5 +1,4 @@
 import {useSelector} from "react-redux"
-import Heading from "../components/Heading"
 import TodoContainer from "../components/TodoContainer"
 
 const HomePage = () => {
@@ -9,9 +8,8 @@ const HomePage = () => {
 		<div
 			className={`${
 				theme ? "bg-darkBgPrimary" : "bg-lightBgPrimary"
-			} min-h-screen flex flex-col justify-center items-center`}
+			} flex flex-col justify-center items-center`}
 		>
-			<Heading />
 			<TodoContainer />
 		</div>
 	)
