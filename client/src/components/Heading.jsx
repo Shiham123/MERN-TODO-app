@@ -6,9 +6,7 @@ import {useEffect} from "react"
 import {changeIcon, changeViewport} from "../redux/DarkLightSlice/themeSlice"
 
 const Heading = () => {
-	const theme = useSelector((state) => state.theme.enabled)
-	const closeNavbar = useSelector((state) => state.theme.closeNavbar)
-
+	const {enabled, viewport} = useSelector((state) => state.theme)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -28,13 +26,15 @@ const Heading = () => {
 			{/* div */}
 			<div className="my-8">
 				<span
-					className={`text-5xl font-Lexend ${theme ? "text-darkTextPrimary" : "text-textPrimary"}`}
+					className={`text-5xl font-Lexend ${
+						enabled ? "text-darkTextPrimary" : "text-textPrimary"
+					}`}
 				>
 					to
 				</span>
 				<span
 					className={`text-5xl font-Lexend ${
-						theme ? "text-darkTextSecondary" : "text-textSecondary"
+						enabled ? "text-darkTextSecondary" : "text-textSecondary"
 					}`}
 				>
 					do.
@@ -42,15 +42,16 @@ const Heading = () => {
 			</div>
 			{/* div two */}
 			<div>
-				{closeNavbar ? (
-					<LiaTimesSolid size={40} color={theme ? "#7f5bf7" : "#f8917e"} />
-				) : (
-					<LuAlignJustify
-						className="cursor-pointer"
-						onClick={() => dispatch(changeViewport(false), changeIcon(true))}
-						size={40}
-						color={theme ? "#7f5bf7" : "#f8917e"}
-					/>
+				{viewport && (
+					<>
+						<LiaTimesSolid size={40} color={enabled ? "#7f5bf7" : "#f8917e"} />
+						<LuAlignJustify
+							className="cursor-pointer"
+							onClick={() => dispatch(changeViewport(false), changeIcon(true))}
+							size={40}
+							color={enabled ? "#7f5bf7" : "#f8917e"}
+						/>
+					</>
 				)}
 			</div>
 		</div>
