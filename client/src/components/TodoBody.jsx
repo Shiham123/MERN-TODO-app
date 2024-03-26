@@ -1,5 +1,7 @@
 import {useSelector} from "react-redux"
 
+import AllTask from "./Tasks/AllTask"
+
 const TodoBody = () => {
 	const theme = useSelector((state) => state.theme.enabled)
 
@@ -7,9 +9,9 @@ const TodoBody = () => {
 		<div
 			className={`${
 				theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
-			} shadow-one lg:w-[700px] md:w-full sm:w-full xs:w-full`}
+			} shadow-one w-[700px] h-[500px] sm:w-[500px] xs:w-[400px]`}
 		>
-			This is todo body
+			<AllTask />
 		</div>
 	)
 }

@@ -18,7 +18,7 @@ const TodoContainer = () => {
 			) : (
 				<TodoNavbar />
 			)}
-			<div className="flex gap-4 p-8">
+			<div className="flex gap-4">
 				<TodoBody />
 			</div>
 		</div>
