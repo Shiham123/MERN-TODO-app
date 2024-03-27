@@ -7,6 +7,7 @@ import {
 } from "react-icons/ri"
 import Button from "../../shared/Button"
 import {changeStar, completeTask} from "../../redux/DarkLightSlice/themeSlice"
+import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 const AllTask = () => {
 	const {enabled, starred, completedTask} = useSelector((state) => state.theme)
@@ -14,13 +15,7 @@ const AllTask = () => {
 
 	return (
 		<div className="flex flex-col p-4">
-			<h1
-				className={`${
-					enabled ? "text-darkTextSecondary" : "text-textSecondary"
-				} font-Lexend font-medium text-xl tracking-wider`}
-			>
-				Tasks
-			</h1>
+			<TaskBodyHeading todoHeading="All Task" />
 
 			{/* Task items div */}
 			<div
