@@ -1,16 +1,27 @@
-import {Outlet} from "react-router-dom" // Import Outlet
 import {useSelector} from "react-redux"
+import AllTask from "../components/Tasks/AllTask"
+import StarredTask from "./Tasks/StarredTask"
+import TodayTask from "./Tasks/TodayTask"
+import WeekTask from "./Tasks/WeekTask"
+import AddTask from "./Tasks/AddTask"
 
 const TodoBody = () => {
-	const theme = useSelector((state) => state.theme.enabled)
+	const {enabled, renderElement} = useSelector((state) => ({
+		enabled: state.theme.enabled,
+		renderElement: state.component.renderElement,
+	}))
 
 	return (
 		<div
 			className={`${
-				theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
+				enabled ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
 			} shadow-one w-[700px] h-[500px] sm:w-[500px] xs:w-[400px]`}
 		>
-			<Outlet />
+			{renderElement == "allTask" && <AllTask />}
+			{renderElement == "starredTask" && <StarredTask />}
+			{renderElement == "todayTask" && <TodayTask />}
+			{renderElement == "weekTask" && <WeekTask />}
+			{renderElement == "addTask" && <AddTask />}
 		</div>
 	)
 }

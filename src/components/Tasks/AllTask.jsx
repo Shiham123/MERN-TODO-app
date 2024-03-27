@@ -54,7 +54,7 @@ const AllTask = () => {
 
 			{/* Add task button */}
 			<div className="flex justify-end">
-				<Button btnText="Add Task" />
+				<Button to="addTask" btnText="Add Task" />
 			</div>
 		</div>
 	)

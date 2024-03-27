@@ -1,13 +1,16 @@
 import PropTypes from "prop-types"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {changeComponent} from "../redux/BodyComponentSlice/componentSlice"
 
 const Button = (props) => {
 	const {enabled} = useSelector((state) => state.theme)
-	const {btnText} = props
+	const {btnText, to} = props
+	const dispatch = useDispatch()
 
 	return (
 		<>
 			<button
+				onClick={() => dispatch(changeComponent(to))}
 				className={`${
 					enabled
 						? "bg-gradient-to-t from-darkTextSecondary/70 to-darkTextSecondary text-darkTextPrimary"
@@ -22,4 +25,4 @@ const Button = (props) => {
 
 export default Button
 
-Button.propTypes = {btnText: PropTypes.string.isRequired}
+Button.propTypes = {btnText: PropTypes.string.isRequired, to: PropTypes.string.isRequired}
