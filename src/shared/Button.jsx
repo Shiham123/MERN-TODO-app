@@ -4,6 +4,7 @@ import {useSelector} from "react-redux"
 const Button = (props) => {
 	const {enabled} = useSelector((state) => state.theme)
 	const {btnText} = props
+
 	return (
 		<>
 			<button

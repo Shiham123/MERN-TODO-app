@@ -1,6 +1,5 @@
+import {Outlet} from "react-router-dom" // Import Outlet
 import {useSelector} from "react-redux"
-
-import AllTask from "./Tasks/AllTask"
 
 const TodoBody = () => {
 	const theme = useSelector((state) => state.theme.enabled)
@@ -11,7 +10,7 @@ const TodoBody = () => {
 				theme ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
 			} shadow-one w-[700px] h-[500px] sm:w-[500px] xs:w-[400px]`}
 		>
-			<AllTask />
+			<Outlet />
 		</div>
 	)
 }
