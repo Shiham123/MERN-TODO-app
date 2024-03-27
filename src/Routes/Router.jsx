@@ -18,7 +18,7 @@ const router = createBrowserRouter([
 				path: "todo",
 				element: <TodoBody />,
 				children: [
-					{index: true, element: <AllTask />},
+					{path: "allTask", element: <AllTask />},
 					{path: "addTask", element: <AddTask />},
 					{path: "starredTask", element: <StarredTask />},
 				],
