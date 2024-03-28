@@ -11,6 +11,8 @@ import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 const AllTask = () => {
 	const {enabled, starred, completedTask} = useSelector((state) => state.theme)
+	const {tasks} = useSelector((state) => state.formData)
+
 	const dispatch = useDispatch()
 
 	return (
@@ -18,34 +20,44 @@ const AllTask = () => {
 			<TaskBodyHeading todoHeading="All Task" />
 
 			{/* Task items div */}
-			<div
-				className={`${
-					enabled ? "bg-[#2f2d36] hover:bg-black/10" : "bg-[#d3dee3] hover:bg-[#c4cdd1]"
-				} flex justify-between items-center my-4 b p-2 rounded-lg cursor-pointer transition-all duration-200 shadow-one hover:shadow-two`}
-			>
-				<div className="flex justify-center items-center gap-4">
-					{completedTask ? (
-						<RiCheckboxCircleFill color="#7a8db0" onClick={() => dispatch(completeTask(false))} />
-					) : (
-						<RiCheckboxBlankCircleLine
-							onClick={() => dispatch(completeTask(true))}
-							color="#7a8db0"
-						/>
-					)}
-					<p
-						className={`${enabled ? "text-white/60" : "text-black/60"} ${
-							completedTask ? "line-through" : ""
-						} font-Lexend text-[17px] font-medium`}
+			{tasks?.map((item, index) => {
+				const {title} = item
+				return (
+					<div
+						key={index}
+						className={`${
+							enabled ? "bg-[#2f2d36] hover:bg-black/10" : "bg-[#d3dee3] hover:bg-[#c4cdd1]"
+						} flex justify-between items-center my-4 b p-2 rounded-lg cursor-pointer transition-all duration-200 shadow-one hover:shadow-two`}
 					>
-						Task One
-					</p>
-				</div>
-				{starred ? (
-					<RiStarFill onClick={() => dispatch(changeStar(false))} color="#7a8db0" size={20} />
-				) : (
-					<RiStarLine onClick={() => dispatch(changeStar(true))} color="#7a8db0" size={20} />
-				)}
-			</div>
+						<div className="flex justify-center items-center gap-4">
+							{completedTask ? (
+								<RiCheckboxCircleFill
+									color="#7a8db0"
+									onClick={() => dispatch(completeTask(false))}
+								/>
+							) : (
+								<RiCheckboxBlankCircleLine
+									onClick={() => dispatch(completeTask(true))}
+									color="#7a8db0"
+								/>
+							)}
+
+							<p
+								className={`${enabled ? "text-white/60" : "text-black/60"} ${
+									completedTask ? "line-through" : ""
+								} font-Lexend text-[17px] font-medium`}
+							>
+								{title}
+							</p>
+						</div>
+						{starred ? (
+							<RiStarFill onClick={() => dispatch(changeStar(false))} color="#7a8db0" size={20} />
+						) : (
+							<RiStarLine onClick={() => dispatch(changeStar(true))} color="#7a8db0" size={20} />
+						)}
+					</div>
+				)
+			})}
 
 			{/* Add task button */}
 			<div className="flex justify-end">
