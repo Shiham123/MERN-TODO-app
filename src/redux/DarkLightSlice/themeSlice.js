@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = {enabled: false, closeNavbar: false, starred: false, completedTask: false}
+const initialState = {enabled: true, closeNavbar: false, starred: false, completedTask: false}
 
 const themeSlice = createSlice({
 	name: "theme",

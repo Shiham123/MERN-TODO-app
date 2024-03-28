@@ -5,23 +5,23 @@ import {RiArrowLeftSLine} from "react-icons/ri"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
-import {addTask} from "../../redux/FormData/formDataSlice"
+import {createTask} from "../../redux/FormData/formDataSlice"
 
 const AddTask = () => {
 	const {enabled, starred} = useSelector((state) => state.theme)
-	const previousData = useSelector((state) => state.formData)
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const formData = new FormData(event.target)
 
-		let formDataObj = {}
-		formData.forEach((value, key) => {
-			formDataObj[key] = value
-		})
-		const mergedData = {...previousData, ...formDataObj}
-		dispatch(addTask(mergedData))
+		const title = formData.get("title")
+		const project = formData.get("project")
+		const date = formData.get("date")
+		const note = formData.get("note")
+
+		const taskObj = {title, project, date, note}
+		dispatch(createTask(taskObj))
 	}
 
 	return (
@@ -33,7 +33,7 @@ const AddTask = () => {
 					<div>
 						<input
 							type="text"
-							name="taskName"
+							name="title"
 							className={`rounded-lg border-none outline-none w-full p-2 my-2 font-Lexend font-semibold tracking-widest ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
@@ -47,7 +47,7 @@ const AddTask = () => {
 						<textarea
 							type="text"
 							placeholder="type here"
-							name="taskNote"
+							name="note"
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 w-full h-[150px] py-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
@@ -62,7 +62,7 @@ const AddTask = () => {
 						<input
 							type="text"
 							readOnly
-							name="taskProject"
+							name="project"
 							value={"hello there"}
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
@@ -73,7 +73,7 @@ const AddTask = () => {
 						<TaskBodyHeading todoHeading="Date" />
 						<input
 							type="date"
-							name="taskDate"
+							name="date"
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
