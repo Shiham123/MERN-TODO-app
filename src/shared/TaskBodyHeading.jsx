@@ -9,7 +9,7 @@ const TaskBodyHeading = (props) => {
 			<h1
 				className={`${
 					enabled ? "text-darkTextSecondary" : "text-textSecondary"
-				} font-Lexend font-medium text-xl tracking-wider`}
+				} font-Lexend font-medium text-xl tracking-wider capitalize`}
 			>
 				{todoHeading}
 			</h1>
