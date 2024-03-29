@@ -16,7 +16,6 @@ const themeSlice = createSlice({
 		changeStar: (state, {payload}) => {
 			state.themeList.starred = payload
 		},
-		completeTask: (state, action) => {},
 	},
 })
 

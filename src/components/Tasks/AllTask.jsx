@@ -6,8 +6,9 @@ import {
 	RiStarLine,
 } from "react-icons/ri"
 import Button from "../../shared/Button"
-import {changeStar, completeTask} from "../../redux/DarkLightSlice/themeSlice"
+import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
+import {completeTask} from "../../redux/FormData/formDataSlice"
 
 const AllTask = () => {
 	const {enabled, starred, completedTask} = useSelector((state) => state.theme.themeList)
@@ -21,7 +22,8 @@ const AllTask = () => {
 
 			{/* Task items div */}
 			{tasks?.map((item, index) => {
-				const {title, id} = item
+				const {title, id, isCompleted} = item
+
 				return (
 					<div
 						key={index}
@@ -30,7 +32,7 @@ const AllTask = () => {
 						} flex justify-between items-center my-4 b p-2 rounded-lg cursor-pointer transition-all duration-200 shadow-one hover:shadow-two`}
 					>
 						<div className="flex justify-center items-center gap-4">
-							{completedTask ? (
+							{isCompleted ? (
 								<RiCheckboxCircleFill
 									color="#7a8db0"
 									onClick={() => dispatch(completeTask({completed: false, taskId: id}))}
@@ -44,7 +46,7 @@ const AllTask = () => {
 
 							<p
 								className={`${enabled ? "text-white/60" : "text-black/60"} ${
-									completedTask ? "line-through" : ""
+									isCompleted ? "line-through" : ""
 								} font-Lexend text-[17px] font-medium`}
 							>
 								{title}

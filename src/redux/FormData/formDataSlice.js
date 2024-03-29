@@ -13,8 +13,14 @@ const formDataSlice = createSlice({
 				state.tasks.push({id: lastElement + 1, ...payload})
 			}
 		},
+
+		completeTask: (state, {payload}) => {
+			const {completed, taskId} = payload
+			const taskIndex = state.tasks.findIndex((item) => item.id === taskId)
+			state.tasks[taskIndex].isCompleted = completed
+		},
 	},
 })
 
-export const {createTask} = formDataSlice.actions
+export const {createTask, completeTask} = formDataSlice.actions
 export default formDataSlice.reducer
