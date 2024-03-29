@@ -13,7 +13,7 @@ const TodoBody = () => {
 		<div
 			className={`${
 				enabled ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
-			} shadow-one w-[700px] h-[500px] sm:w-[500px] xs:w-[400px]`}
+			} shadow-one w-[700px] h-[500px] overflow-scroll sm:w-[500px] xs:w-[400px] scrollbar-hide`}
 		>
 			{renderElement == "allTask" && <AllTask />}
 			{renderElement == "starredTask" && <StarredTask />}

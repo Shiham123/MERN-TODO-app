@@ -21,7 +21,7 @@ const AllTask = () => {
 
 			{/* Task items div */}
 			{tasks?.map((item, index) => {
-				const {title} = item
+				const {title, id} = item
 				return (
 					<div
 						key={index}
@@ -33,11 +33,11 @@ const AllTask = () => {
 							{completedTask ? (
 								<RiCheckboxCircleFill
 									color="#7a8db0"
-									onClick={() => dispatch(completeTask(false))}
+									onClick={() => dispatch(completeTask({completed: false, taskId: id}))}
 								/>
 							) : (
 								<RiCheckboxBlankCircleLine
-									onClick={() => dispatch(completeTask(true))}
+									onClick={() => dispatch(completeTask({completed: true, taskId: id}))}
 									color="#7a8db0"
 								/>
 							)}

@@ -1,18 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit"
-
-const initialState = {
-	tasks: [
-		{id: 1, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
-		{id: 2, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
-		{id: 3, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
-		{id: 4, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
-		{id: 5, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
-	],
-}
+import {taskList} from "../../../public/taskList"
 
 const formDataSlice = createSlice({
 	name: "formData",
-	initialState,
+	initialState: {tasks: taskList},
 	reducers: {
 		createTask: (state, {payload}) => {
 			if (state.tasks.length == 0) {

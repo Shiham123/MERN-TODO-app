@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = {enabled: true, closeNavbar: false, starred: false, completedTask: false}
+const initialState = {enabled: false, closeNavbar: false, starred: false, completedTask: false}
 
 const themeSlice = createSlice({
 	name: "theme",
@@ -20,9 +20,10 @@ const themeSlice = createSlice({
 			state.starred = payload
 		},
 
-		completeTask: (state, action) => {
-			const {payload} = action
-			state.completedTask = payload
+		completeTask: (state, {payload, type}) => {
+			const {completed, taskId} = payload
+			if (type == "theme/completeTask") {
+			}
 		},
 	},
 })
