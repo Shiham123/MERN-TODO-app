@@ -25,8 +25,12 @@ const formDataSlice = createSlice({
 			const taskIndex = state.tasks.findIndex((item) => item.id === taskId)
 			state.tasks[taskIndex].isStarred = starred
 		},
+
+		addedProject: (state, {payload}) => {
+			state.project.push(payload)
+		},
 	},
 })
 
-export const {createTask, completeTask, starredTask} = formDataSlice.actions
+export const {createTask, completeTask, starredTask, addedProject} = formDataSlice.actions
 export default formDataSlice.reducer
