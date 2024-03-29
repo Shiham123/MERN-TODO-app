@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {taskList} from "../../../public/taskList"
+import {projectList, taskList} from "../../../public/taskList"
 
 const formDataSlice = createSlice({
 	name: "formData",
-	initialState: {tasks: taskList},
+	initialState: {tasks: taskList, project: projectList},
 	reducers: {
 		createTask: (state, {payload}) => {
 			if (state.tasks.length == 0) {

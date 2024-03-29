@@ -16,9 +16,12 @@ const themeSlice = createSlice({
 		changeStar: (state, {payload}) => {
 			state.themeList.starred = payload
 		},
+		showProjectInput: (state, {payload}) => {
+			state.themeList.isProjectInput = payload
+		},
 	},
 })
 
-export const {changeTheme, changeIcon, changeStar} = themeSlice.actions
+export const {changeTheme, changeIcon, changeStar, showProjectInput} = themeSlice.actions
 
 export default themeSlice.reducer

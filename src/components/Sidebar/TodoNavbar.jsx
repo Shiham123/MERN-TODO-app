@@ -3,6 +3,7 @@ import DarkLightBtn from "./DarkLightBtn"
 import TodoButton from "./TodoButton"
 import TodoOptions from "./TodoOptions"
 import AddProjects from "./AddProjects"
+import AddInput from "./AddInput"
 
 const TodoNavbar = () => {
 	const {enabled, closeNavbar} = useSelector((state) => state.theme.themeList)
@@ -28,6 +29,7 @@ const TodoNavbar = () => {
 				<TodoOptions text="projects" />
 				<AddProjects />
 			</div>
+			<AddInput />
 		</div>
 	)
 }

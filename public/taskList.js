@@ -4,6 +4,14 @@ const taskList = [
 	{id: 2, title: "Task one ", project: "hello there", date: "2024-03-22", note: "note one"},
 ]
 
-const themeList = {enabled: true, closeNavbar: false, starred: false, completedTask: false}
+const themeList = {
+	enabled: true,
+	closeNavbar: false,
+	starred: false,
+	completedTask: false,
+	isProjectInput: false,
+}
 
-export {taskList, themeList}
+const projectList = []
+
+export {taskList, themeList, projectList}
