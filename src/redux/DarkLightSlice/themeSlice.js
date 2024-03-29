@@ -19,6 +19,6 @@ const themeSlice = createSlice({
 	},
 })
 
-export const {changeTheme, changeIcon, changeStar, completeTask} = themeSlice.actions
+export const {changeTheme, changeIcon, changeStar} = themeSlice.actions
 
 export default themeSlice.reducer

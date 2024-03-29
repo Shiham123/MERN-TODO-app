@@ -1,3 +1,4 @@
+// package
 import {useDispatch, useSelector} from "react-redux"
 import {
 	RiCheckboxBlankCircleLine,
@@ -5,13 +6,16 @@ import {
 	RiStarFill,
 	RiStarLine,
 } from "react-icons/ri"
+
+// imported
 import Button from "../../shared/Button"
-import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
-import {completeTask} from "../../redux/FormData/formDataSlice"
+
+// slice
+import {completeTask, starredTask} from "../../redux/FormData/formDataSlice"
 
 const AllTask = () => {
-	const {enabled, starred, completedTask} = useSelector((state) => state.theme.themeList)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 	const {tasks} = useSelector((state) => state.formData)
 
 	const dispatch = useDispatch()
@@ -22,7 +26,7 @@ const AllTask = () => {
 
 			{/* Task items div */}
 			{tasks?.map((item, index) => {
-				const {title, id, isCompleted} = item
+				const {title, id, isCompleted, isStarred} = item
 
 				return (
 					<div
@@ -52,10 +56,18 @@ const AllTask = () => {
 								{title}
 							</p>
 						</div>
-						{starred ? (
-							<RiStarFill onClick={() => dispatch(changeStar(false))} color="#7a8db0" size={20} />
+						{isStarred ? (
+							<RiStarFill
+								onClick={() => dispatch(starredTask({starred: false, taskId: id}))}
+								color="#7a8db0"
+								size={20}
+							/>
 						) : (
-							<RiStarLine onClick={() => dispatch(changeStar(true))} color="#7a8db0" size={20} />
+							<RiStarLine
+								onClick={() => dispatch(starredTask({starred: true, taskId: id}))}
+								color="#7a8db0"
+								size={20}
+							/>
 						)}
 					</div>
 				)
