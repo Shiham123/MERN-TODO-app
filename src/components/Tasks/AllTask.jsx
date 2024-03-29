@@ -10,7 +10,7 @@ import {changeStar, completeTask} from "../../redux/DarkLightSlice/themeSlice"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 const AllTask = () => {
-	const {enabled, starred, completedTask} = useSelector((state) => state.theme)
+	const {enabled, starred, completedTask} = useSelector((state) => state.theme.themeList)
 	const {tasks} = useSelector((state) => state.formData)
 
 	const dispatch = useDispatch()

@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import {useSelector} from "react-redux"
 
 const TaskBodyHeading = (props) => {
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 	const {todoHeading} = props
 	return (
 		<>

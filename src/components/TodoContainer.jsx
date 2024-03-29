@@ -3,7 +3,7 @@ import TodoNavbar from "./Sidebar/TodoNavbar"
 import {useSelector} from "react-redux"
 
 const TodoContainer = () => {
-	const {closeNavbar} = useSelector((state) => state.theme)
+	const {closeNavbar} = useSelector((state) => state.theme.themeList)
 
 	return (
 		<div className="flex gap-4 p-8">

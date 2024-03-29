@@ -3,7 +3,7 @@ import Heading from "../components/Heading"
 import {useSelector} from "react-redux"
 
 const MainLayout = () => {
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 
 	return (
 		<div className={`${enabled ? "bg-darkBgPrimary" : "bg-lightBgPrimary"} min-h-screen`}>

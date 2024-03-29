@@ -1,34 +1,25 @@
 import {createSlice} from "@reduxjs/toolkit"
+import {taskList, themeList} from "../../../public/taskList"
 
-const initialState = {enabled: false, closeNavbar: false, starred: false, completedTask: false}
+const initialState = {tasks: taskList, themeList: themeList}
 
 const themeSlice = createSlice({
 	name: "theme",
 	initialState,
 	reducers: {
-		changeTheme: (state, action) => {
-			const {payload} = action
-			state.enabled = payload
+		changeTheme: (state, {payload}) => {
+			state.themeList.enabled = payload
 		},
-
 		changeIcon: (state, {payload}) => {
-			state.closeNavbar = payload
+			state.themeList.closeNavbar = payload
 		},
-
-		changeStar: (state, action) => {
-			const {payload} = action
-			state.starred = payload
+		changeStar: (state, {payload}) => {
+			state.themeList.starred = payload
 		},
-
-		completeTask: (state, {payload, type}) => {
-			const {completed, taskId} = payload
-			if (type == "theme/completeTask") {
-			}
-		},
+		completeTask: (state, action) => {},
 	},
 })
 
-export const {changeTheme, changeViewport, changeIcon, changeStar, completeTask} =
-	themeSlice.actions
+export const {changeTheme, changeIcon, changeStar, completeTask} = themeSlice.actions
 
 export default themeSlice.reducer

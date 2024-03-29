@@ -8,7 +8,7 @@ import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 import {createTask} from "../../redux/FormData/formDataSlice"
 
 const AddTask = () => {
-	const {enabled, starred} = useSelector((state) => state.theme)
+	const {enabled, starred} = useSelector((state) => state.theme.themeList)
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {

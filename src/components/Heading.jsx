@@ -5,7 +5,7 @@ import {LiaTimesSolid} from "react-icons/lia"
 import {changeIcon} from "../redux/DarkLightSlice/themeSlice"
 
 const Heading = () => {
-	const {enabled, closeNavbar} = useSelector((state) => state.theme)
+	const {enabled, closeNavbar} = useSelector((state) => state.theme.themeList)
 	const dispatch = useDispatch()
 
 	return (

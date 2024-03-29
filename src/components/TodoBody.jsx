@@ -6,7 +6,7 @@ import WeekTask from "./Tasks/WeekTask"
 import AddTask from "./Tasks/AddTask"
 
 const TodoBody = () => {
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 	const {renderElement} = useSelector((state) => state.component)
 
 	return (

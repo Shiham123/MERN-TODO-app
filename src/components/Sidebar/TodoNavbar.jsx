@@ -5,7 +5,7 @@ import TodoOptions from "./TodoOptions"
 import AddProjects from "./AddProjects"
 
 const TodoNavbar = () => {
-	const {enabled, closeNavbar} = useSelector((state) => state.theme)
+	const {enabled, closeNavbar} = useSelector((state) => state.theme.themeList)
 
 	return (
 		<div

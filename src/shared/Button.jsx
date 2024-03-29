@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {changeComponent} from "../redux/BodyComponentSlice/componentSlice"
 
 const Button = (props) => {
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 	const {btnText, to} = props
 	const dispatch = useDispatch()
 

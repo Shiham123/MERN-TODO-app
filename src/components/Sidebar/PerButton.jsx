@@ -4,7 +4,7 @@ import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 
 const PerButton = (props) => {
 	const {text, icon: Icon, to} = props
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
 	const dispatch = useDispatch()
 
 	return (
