@@ -13,6 +13,8 @@ import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 // slice
 import {completeTask, starredTask} from "../../redux/FormData/formDataSlice"
+import {FaEdit} from "react-icons/fa"
+import {MdDelete} from "react-icons/md"
 
 const AllTask = () => {
 	const {enabled} = useSelector((state) => state.theme.themeList)
@@ -33,7 +35,7 @@ const AllTask = () => {
 						key={index}
 						className={`${
 							enabled ? "bg-[#2f2d36] hover:bg-black/10" : "bg-[#d3dee3] hover:bg-[#c4cdd1]"
-						} flex justify-between items-center my-4 b p-2 rounded-lg cursor-pointer transition-all duration-200 shadow-one hover:shadow-two`}
+						} flex justify-between items-center my-4 b p-2 rounded-lg cursor-pointer transition-all duration-200 shadow-one hover:shadow-two group`}
 					>
 						<div className="flex justify-center items-center gap-4">
 							{isCompleted ? (
@@ -56,19 +58,34 @@ const AllTask = () => {
 								{title}
 							</p>
 						</div>
-						{isStarred ? (
-							<RiStarFill
-								onClick={() => dispatch(starredTask({starred: false, taskId: id}))}
-								color="#7a8db0"
-								size={20}
-							/>
-						) : (
-							<RiStarLine
-								onClick={() => dispatch(starredTask({starred: true, taskId: id}))}
-								color="#7a8db0"
-								size={20}
-							/>
-						)}
+
+						<div className="flex justify-between items-center gap-4">
+							<div className="flex gap-4">
+								<FaEdit
+									className="group-hover:block hidden"
+									color={enabled ? "#7f5bf7" : "#f8917e"}
+								/>
+								<MdDelete
+									className="group-hover:block hidden"
+									color={enabled ? "#7f5bf7" : "#f8917e"}
+								/>
+							</div>
+							<div>
+								{isStarred ? (
+									<RiStarFill
+										onClick={() => dispatch(starredTask({starred: false, taskId: id}))}
+										color="#7a8db0"
+										size={20}
+									/>
+								) : (
+									<RiStarLine
+										onClick={() => dispatch(starredTask({starred: true, taskId: id}))}
+										color="#7a8db0"
+										size={20}
+									/>
+								)}
+							</div>
+						</div>
 					</div>
 				)
 			})}

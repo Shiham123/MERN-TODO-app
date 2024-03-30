@@ -23,6 +23,7 @@ const AddInput = () => {
 		<div className="flex flex-col justify-center items-center mx-4">
 			{isProjectInput && (
 				<input
+					placeholder="type here"
 					type="text"
 					onChange={(event) => setInputField(event.target.value)}
 					onKeyDown={handleSubmit}
