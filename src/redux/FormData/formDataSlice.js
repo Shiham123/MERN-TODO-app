@@ -27,7 +27,12 @@ const formDataSlice = createSlice({
 		},
 
 		addedProject: (state, {payload}) => {
-			state.project.push(payload)
+			if (state.project.length == 0) {
+				state.project.push({id: 1, projectTitle: payload})
+			} else {
+				const lastEl = state.project.length
+				state.project.push({id: lastEl + 1, projectTitle: payload})
+			}
 		},
 	},
 })
