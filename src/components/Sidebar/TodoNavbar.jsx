@@ -14,7 +14,7 @@ const TodoNavbar = () => {
 				enabled ? "bg-darkBgSecondary" : "bg-lightBgSecondary"
 			} rounded-2xl shadow-one lg:block xl:block 2xl:block ${
 				closeNavbar ? "md:block sm:block xs:block" : "md:hidden sm:hidden xs:hidden"
-			}`}
+			} overflow-scroll scrollbar-hide h-[500px]`}
 		>
 			{/* div one */}
 			<div className="w-[300px] h-fit px-4 py-2">
