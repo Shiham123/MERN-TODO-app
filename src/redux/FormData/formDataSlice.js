@@ -34,8 +34,19 @@ const formDataSlice = createSlice({
 				state.project.push({id: lastEl + 1, projectTitle: payload})
 			}
 		},
+
+		editProject: (state, {payload}) => {
+			const {projectId, newProjectTitle} = payload
+			const projectIndex = state.project.findIndex((item) => item.id === projectId)
+
+			if (projectIndex >= 0) {
+				state.project[projectIndex].projectTitle = newProjectTitle
+			}
+		},
+		// deleteProject: (state, {payload}) => {},
 	},
 })
 
-export const {createTask, completeTask, starredTask, addedProject} = formDataSlice.actions
+export const {createTask, completeTask, starredTask, addedProject, editProject, deleteProject} =
+	formDataSlice.actions
 export default formDataSlice.reducer

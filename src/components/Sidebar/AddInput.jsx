@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 
-import {addedProject} from "../../redux/FormData/formDataSlice"
+import {addedProject, editProject} from "../../redux/FormData/formDataSlice"
 
 const AddInput = () => {
 	const {enabled, isProjectInput} = useSelector((state) => state.theme.themeList)
@@ -16,6 +16,13 @@ const AddInput = () => {
 		if (event.key == "Enter") {
 			dispatch(addedProject(inputField))
 			setInputField("")
+		}
+	}
+
+	const handleEditProject = (id, projectTitle) => {
+		const newProjectTitle = window.prompt("Enter new project title", projectTitle)
+		if (newProjectTitle !== null) {
+			dispatch(editProject({projectId: id, newProjectTitle}))
 		}
 	}
 
@@ -36,7 +43,7 @@ const AddInput = () => {
 
 			{project &&
 				project.map((item, index) => {
-					const {projectTitle} = item
+					const {id, projectTitle} = item
 					return (
 						<div
 							className={`rounded-lg border-none outline-none w-full p-2 my-2 font-Lexend font-semibold tracking-widest cursor-pointer ${
@@ -48,9 +55,11 @@ const AddInput = () => {
 								<button>{projectTitle}</button>
 								<div className="flex gap-4">
 									<FaEdit
+										onClick={() => handleEditProject(id, projectTitle)}
 										className="group-hover:block hidden"
 										color={enabled ? "#7f5bf7" : "#f8917e"}
 									/>
+
 									<MdDelete
 										className="group-hover:block hidden"
 										color={enabled ? "#7f5bf7" : "#f8917e"}
