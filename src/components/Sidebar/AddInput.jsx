@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 
-import {addedProject, editProject} from "../../redux/FormData/formDataSlice"
+import {addedProject, deleteProject, editProject} from "../../redux/FormData/formDataSlice"
 import {showEditProjectInput} from "../../redux/DarkLightSlice/themeSlice"
 
 const AddInput = () => {
@@ -79,6 +79,7 @@ const AddInput = () => {
 									/>
 
 									<MdDelete
+										onClick={() => dispatch(deleteProject({projectId: id}))}
 										className="group-hover:block hidden"
 										color={enabled ? "#7f5bf7" : "#f8917e"}
 									/>

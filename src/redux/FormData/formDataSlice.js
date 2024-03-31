@@ -43,7 +43,14 @@ const formDataSlice = createSlice({
 				state.project[projectIndex].projectTitle = newProjectTitle
 			}
 		},
-		// deleteProject: (state, {payload}) => {},
+		deleteProject: (state, {payload}) => {
+			const {projectId} = payload
+
+			if (state.project.length >= 0) {
+				const filterProject = state.project.filter((item) => item.id !== projectId)
+				state.project = filterProject
+			}
+		},
 	},
 })
 
