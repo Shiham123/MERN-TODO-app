@@ -6,9 +6,13 @@ import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 import {createTask} from "../../redux/FormData/formDataSlice"
+import {useRef} from "react"
 
 const AddTask = () => {
+	const formRef = useRef()
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
+	const {project} = useSelector((state) => state.formData)
+
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {
@@ -20,13 +24,15 @@ const AddTask = () => {
 		const date = formData.get("date")
 		const note = formData.get("note")
 
-		const taskObj = {title, project, date, note}
+		const taskObj = {title, project, date, note, isStar: starred}
 		dispatch(createTask(taskObj))
+		dispatch(changeComponent("allTask"))
+		formRef.current.reset()
 	}
 
 	return (
 		<div className="flex flex-col p-4">
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} ref={formRef}>
 				{/* task name */}
 				<section>
 					<TaskBodyHeading todoHeading="Add Task" />
@@ -59,16 +65,29 @@ const AddTask = () => {
 				<main className="flex gap-4">
 					<section className="my-4">
 						<TaskBodyHeading todoHeading="project" />
-						<input
-							type="text"
-							readOnly
+						<select
 							name="project"
-							value={"hello there"}
-							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 my-2 ${
+							readOnly
+							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest focus:border-none focus:outline-none w-[200px] p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
-						/>
+						>
+							{project.map((item) => {
+								const {projectTitle, id} = item
+								return (
+									<option
+										className="focus:border-none focus:outline-none"
+										value={projectTitle}
+										defaultValue={"default"}
+										key={id}
+									>
+										{projectTitle}
+									</option>
+								)
+							})}
+						</select>
 					</section>
+
 					<section className="my-4">
 						<TaskBodyHeading todoHeading="Date" />
 						<input
