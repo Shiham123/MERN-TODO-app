@@ -10,6 +10,7 @@ const themeList = {
 	starred: false,
 	completedTask: false,
 	isProjectInput: false,
+	isEditProjectInput: false,
 }
 
 const projectList = []

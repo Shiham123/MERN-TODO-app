@@ -19,10 +19,19 @@ const themeSlice = createSlice({
 		showProjectInput: (state, {payload}) => {
 			state.themeList.isProjectInput = payload
 		},
+		showEditProjectInput: (state, {payload}) => {
+			state.themeList.isEditProjectInput = payload
+		},
 	},
 })
 
-export const {changeTheme, changeIcon, changeStar, showProjectInput, showEditAndDeleteBtn} =
-	themeSlice.actions
+export const {
+	changeTheme,
+	changeIcon,
+	changeStar,
+	showProjectInput,
+	showEditAndDeleteBtn,
+	showEditProjectInput,
+} = themeSlice.actions
 
 export default themeSlice.reducer

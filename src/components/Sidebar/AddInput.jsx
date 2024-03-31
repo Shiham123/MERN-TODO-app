@@ -4,12 +4,16 @@ import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 
 import {addedProject, editProject} from "../../redux/FormData/formDataSlice"
+import {showEditProjectInput} from "../../redux/DarkLightSlice/themeSlice"
 
 const AddInput = () => {
-	const {enabled, isProjectInput} = useSelector((state) => state.theme.themeList)
+	const {enabled, isProjectInput, isEditProjectInput} = useSelector(
+		(state) => state.theme.themeList,
+	)
 	const {project} = useSelector((state) => state.formData)
 
 	const [inputField, setInputField] = useState("")
+	const [newProjectTitle, setNewProjectTitle] = useState("")
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {
@@ -19,10 +23,10 @@ const AddInput = () => {
 		}
 	}
 
-	const handleEditProject = (id, projectTitle) => {
-		const newProjectTitle = window.prompt("Enter new project title", projectTitle)
-		if (newProjectTitle !== null) {
+	const handleEditProject = (id, newProjectTitle, event) => {
+		if (event.key === "Enter") {
 			dispatch(editProject({projectId: id, newProjectTitle}))
+			dispatch(showEditProjectInput(false))
 		}
 	}
 
@@ -52,10 +56,24 @@ const AddInput = () => {
 							key={index}
 						>
 							<div className="flex flex-row justify-between items-center group">
-								<button>{projectTitle}</button>
+								{isEditProjectInput ? (
+									<input
+										placeholder={projectTitle}
+										type="text"
+										onKeyDown={(event) => handleEditProject(id, newProjectTitle, event)}
+										value={newProjectTitle}
+										onChange={(event) => setNewProjectTitle(event.target.value)}
+										className={`rounded-lg border-none outline-none w-full  font-Lexend font-semibold tracking-widest ${
+											enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
+										}`}
+									/>
+								) : (
+									<button>{projectTitle}</button>
+								)}
+
 								<div className="flex gap-4">
 									<FaEdit
-										onClick={() => handleEditProject(id, projectTitle)}
+										onClick={() => dispatch(showEditProjectInput(true))}
 										className="group-hover:block hidden"
 										color={enabled ? "#7f5bf7" : "#f8917e"}
 									/>
