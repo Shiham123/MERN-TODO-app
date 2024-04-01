@@ -43,6 +43,13 @@ const formDataSlice = createSlice({
 				state.project[projectIndex].projectTitle = newProjectTitle
 			}
 		},
+
+		editTask: (state, {payload}) => {
+			const {taskId} = payload
+			const findTask = state.tasks.find((item) => item.id === taskId)
+			console.log(findTask)
+		},
+
 		deleteProject: (state, {payload}) => {
 			const {projectId} = payload
 
@@ -52,10 +59,8 @@ const formDataSlice = createSlice({
 			}
 		},
 
-		// editTask: (state, {payload}) => {},
 		deleteTask: (state, {payload}) => {
 			const {taskId} = payload
-
 			if (state.tasks.length >= 0) {
 				const filterTask = state.tasks.filter((item) => item.id !== taskId)
 				state.tasks = filterTask
@@ -70,6 +75,7 @@ export const {
 	starredTask,
 	addedProject,
 	editProject,
+	editTask,
 	deleteProject,
 	deleteTask,
 } = formDataSlice.actions

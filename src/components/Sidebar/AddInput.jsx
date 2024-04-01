@@ -10,7 +10,7 @@ const AddInput = () => {
 	const {enabled, isProjectInput, isEditProjectInput} = useSelector(
 		(state) => state.theme.themeList,
 	)
-	const {project} = useSelector((state) => state.formData)
+	const {project, tasks} = useSelector((state) => state.formData)
 
 	const [inputField, setInputField] = useState("")
 	const [newProjectTitle, setNewProjectTitle] = useState("")

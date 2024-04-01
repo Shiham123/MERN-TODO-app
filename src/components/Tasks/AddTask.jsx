@@ -11,7 +11,7 @@ import {useRef} from "react"
 const AddTask = () => {
 	const formRef = useRef()
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
-	const {project} = useSelector((state) => state.formData)
+	const {project, tasks} = useSelector((state) => state.formData)
 
 	const dispatch = useDispatch()
 
