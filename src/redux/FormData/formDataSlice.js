@@ -51,9 +51,26 @@ const formDataSlice = createSlice({
 				state.project = filterProject
 			}
 		},
+
+		// editTask: (state, {payload}) => {},
+		deleteTask: (state, {payload}) => {
+			const {taskId} = payload
+
+			if (state.tasks.length >= 0) {
+				const filterTask = state.tasks.filter((item) => item.id !== taskId)
+				state.tasks = filterTask
+			}
+		},
 	},
 })
 
-export const {createTask, completeTask, starredTask, addedProject, editProject, deleteProject} =
-	formDataSlice.actions
+export const {
+	createTask,
+	completeTask,
+	starredTask,
+	addedProject,
+	editProject,
+	deleteProject,
+	deleteTask,
+} = formDataSlice.actions
 export default formDataSlice.reducer

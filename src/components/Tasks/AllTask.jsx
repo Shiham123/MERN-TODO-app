@@ -12,7 +12,7 @@ import Button from "../../shared/Button"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 // slice
-import {completeTask, starredTask} from "../../redux/FormData/formDataSlice"
+import {completeTask, deleteTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 
@@ -66,6 +66,7 @@ const AllTask = () => {
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
 								<MdDelete
+									onClick={() => dispatch(deleteTask({taskId: id}))}
 									className="group-hover:block hidden"
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
