@@ -11,7 +11,9 @@ import {useRef} from "react"
 const AddTask = () => {
 	const formRef = useRef()
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
-	const {project, tasks} = useSelector((state) => state.formData)
+	const {project, selectedTask} = useSelector((state) => state.formData)
+
+	console.log(selectedTask)
 
 	const dispatch = useDispatch()
 
@@ -38,6 +40,8 @@ const AddTask = () => {
 					<TaskBodyHeading todoHeading="Add Task" />
 					<div>
 						<input
+							defaultValue={selectedTask ? selectedTask.title : ""}
+							placeholder="type here"
 							type="text"
 							name="title"
 							className={`rounded-lg border-none outline-none w-full p-2 my-2 font-Lexend font-semibold tracking-widest ${
@@ -52,7 +56,8 @@ const AddTask = () => {
 					<div>
 						<textarea
 							type="text"
-							placeholder="type here"
+							defaultValue={selectedTask ? selectedTask.note : ""}
+							placeholder="Type here"
 							name="note"
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 w-full h-[150px] py-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
@@ -77,11 +82,10 @@ const AddTask = () => {
 								return (
 									<option
 										className="focus:border-none focus:outline-none"
-										value={projectTitle}
-										defaultValue={"default"}
+										defaultValue={selectedTask ? selectedTask.project : projectTitle}
 										key={id}
 									>
-										{projectTitle}
+										{selectedTask ? selectedTask.project : projectTitle}
 									</option>
 								)
 							})}
@@ -93,13 +97,14 @@ const AddTask = () => {
 						<input
 							type="date"
 							name="date"
+							defaultValue={selectedTask.date}
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
 						/>
 					</section>
 					<section className="mt-14">
-						{starred ? (
+						{selectedTask.isStar ? (
 							<RiStarFill
 								className="cursor-pointer"
 								onClick={() => dispatch(changeStar(false))}

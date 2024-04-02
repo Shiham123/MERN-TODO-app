@@ -3,7 +3,7 @@ import {projectList, taskList} from "../../../public/taskList"
 
 const formDataSlice = createSlice({
 	name: "formData",
-	initialState: {tasks: taskList, project: projectList},
+	initialState: {tasks: taskList, project: projectList, selectedTask: []},
 	reducers: {
 		createTask: (state, {payload}) => {
 			if (state.tasks.length == 0) {
@@ -47,7 +47,7 @@ const formDataSlice = createSlice({
 		editTask: (state, {payload}) => {
 			const {taskId} = payload
 			const findTask = state.tasks.find((item) => item.id === taskId)
-			console.log(findTask)
+			state.selectedTask = findTask
 		},
 
 		deleteProject: (state, {payload}) => {
