@@ -9,7 +9,8 @@ const EditTask = () => {
 	const formRef = useRef()
 
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
-	const {project} = useSelector((state) => state.formData)
+	const {project, selectedTask} = useSelector((state) => state.formData)
+
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {
@@ -21,7 +22,7 @@ const EditTask = () => {
 		const date = formData.get("date")
 		const note = formData.get("note")
 
-		const taskObj = {title, project, date, note, isStar: starred}
+		const taskObj = {title, project, date, note, isStarred: starred}
 		dispatch(changeComponent("allTask"))
 		formRef.current.reset()
 	}
@@ -35,6 +36,7 @@ const EditTask = () => {
 					<div>
 						<input
 							placeholder="type here"
+							defaultValue={selectedTask.title}
 							type="text"
 							name="title"
 							className={`rounded-lg border-none outline-none w-full p-2 my-2 font-Lexend font-semibold tracking-widest ${
@@ -50,6 +52,7 @@ const EditTask = () => {
 						<textarea
 							type="text"
 							placeholder="Type here"
+							defaultValue={selectedTask.note}
 							name="note"
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 w-full h-[150px] py-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
@@ -85,13 +88,14 @@ const EditTask = () => {
 						<input
 							type="date"
 							name="date"
+							defaultValue={selectedTask.date}
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
 						/>
 					</section>
 					<section className="mt-14">
-						{starred ? (
+						{selectedTask.isStarred ? (
 							<RiStarFill
 								className="cursor-pointer"
 								onClick={() => dispatch(changeStar(false))}

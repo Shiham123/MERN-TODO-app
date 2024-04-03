@@ -24,7 +24,7 @@ const AddTask = () => {
 		const date = formData.get("date")
 		const note = formData.get("note")
 
-		const taskObj = {title, project, date, note, isStar: starred}
+		const taskObj = {title, project, date, note, isStarred: starred}
 		dispatch(createTask(taskObj))
 		dispatch(changeComponent("allTask"))
 		formRef.current.reset()

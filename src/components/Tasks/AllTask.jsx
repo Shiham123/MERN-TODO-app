@@ -12,7 +12,7 @@ import Button from "../../shared/Button"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 // slice
-import {completeTask, deleteTask, starredTask} from "../../redux/FormData/formDataSlice"
+import {completeTask, deleteTask, editTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
@@ -23,13 +23,18 @@ const AllTask = () => {
 
 	const dispatch = useDispatch()
 
+	const handleEdit = (id) => {
+		dispatch(changeComponent("editTask"))
+		dispatch(editTask({taskId: id}))
+	}
+
 	return (
 		<div className="flex flex-col p-4">
 			<TaskBodyHeading todoHeading="All Task" />
 
 			{/* Task items div */}
 			{tasks?.map((item, index) => {
-				const {title, id, isCompleted, isStarred} = item
+				const {title, id, isCompleted, isStarred, isStar} = item
 
 				return (
 					<div
@@ -63,7 +68,7 @@ const AllTask = () => {
 						<div className="flex justify-between items-center gap-4">
 							<div className="flex gap-4">
 								<FaEdit
-									onClick={() => dispatch(changeComponent("editTask"))}
+									onClick={() => handleEdit(id)}
 									className="group-hover:block hidden"
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
@@ -74,7 +79,7 @@ const AllTask = () => {
 								/>
 							</div>
 							<div>
-								{isStarred ? (
+								{isStarred || isStar ? (
 									<RiStarFill
 										onClick={() => dispatch(starredTask({starred: false, taskId: id}))}
 										color="#7a8db0"
