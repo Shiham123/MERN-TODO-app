@@ -1,41 +1,20 @@
 import {useDispatch, useSelector} from "react-redux"
-import {RiStarFill, RiStarLine} from "react-icons/ri"
-import {RiArrowLeftSLine} from "react-icons/ri"
-
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
+import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
 import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
-import {createTask} from "../../redux/FormData/formDataSlice"
-import {useRef} from "react"
 
-const AddTask = () => {
-	const formRef = useRef()
+const EditTask = () => {
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
 	const {project} = useSelector((state) => state.formData)
-
 	const dispatch = useDispatch()
-
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		const formData = new FormData(event.target)
-
-		const title = formData.get("title")
-		const project = formData.get("project")
-		const date = formData.get("date")
-		const note = formData.get("note")
-
-		const taskObj = {title, project, date, note, isStar: starred}
-		dispatch(createTask(taskObj))
-		dispatch(changeComponent("allTask"))
-		formRef.current.reset()
-	}
 
 	return (
 		<div className="flex flex-col p-4">
-			<form onSubmit={handleSubmit} ref={formRef}>
+			<form>
 				{/* task name */}
 				<section>
-					<TaskBodyHeading todoHeading="Add Task" />
+					<TaskBodyHeading todoHeading="Edit Task" />
 					<div>
 						<input
 							placeholder="type here"
@@ -137,4 +116,4 @@ const AddTask = () => {
 	)
 }
 
-export default AddTask
+export default EditTask

@@ -12,7 +12,7 @@ import Button from "../../shared/Button"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 
 // slice
-import {completeTask, deleteTask, editTask, starredTask} from "../../redux/FormData/formDataSlice"
+import {completeTask, deleteTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
@@ -22,11 +22,6 @@ const AllTask = () => {
 	const {tasks} = useSelector((state) => state.formData)
 
 	const dispatch = useDispatch()
-
-	const handleEditTask = (id) => {
-		dispatch(changeComponent("addTask"))
-		dispatch(editTask({taskId: id}))
-	}
 
 	return (
 		<div className="flex flex-col p-4">
@@ -68,7 +63,7 @@ const AllTask = () => {
 						<div className="flex justify-between items-center gap-4">
 							<div className="flex gap-4">
 								<FaEdit
-									onClick={() => handleEditTask(id)}
+									onClick={() => dispatch(changeComponent("editTask"))}
 									className="group-hover:block hidden"
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
