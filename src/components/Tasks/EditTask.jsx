@@ -4,6 +4,7 @@ import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
 import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 import {useRef} from "react"
+import {editedTask} from "../../redux/FormData/formDataSlice"
 
 const EditTask = () => {
 	const formRef = useRef()
@@ -23,7 +24,7 @@ const EditTask = () => {
 		const note = formData.get("note")
 
 		const taskObj = {title, project, date, note, isStarred: starred}
-		console.log(taskObj)
+		dispatch(editedTask({editTaskId: selectedTask.id, editTaskObj: taskObj}))
 		dispatch(changeComponent("allTask"))
 		formRef.current.reset()
 	}
