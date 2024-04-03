@@ -23,6 +23,7 @@ const EditTask = () => {
 		const note = formData.get("note")
 
 		const taskObj = {title, project, date, note, isStarred: starred}
+		console.log(taskObj)
 		dispatch(changeComponent("allTask"))
 		formRef.current.reset()
 	}
