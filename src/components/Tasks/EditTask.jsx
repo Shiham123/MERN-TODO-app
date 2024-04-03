@@ -3,15 +3,32 @@ import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
 import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
+import {useRef} from "react"
 
 const EditTask = () => {
+	const formRef = useRef()
+
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
 	const {project} = useSelector((state) => state.formData)
 	const dispatch = useDispatch()
 
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		const formData = new FormData(event.target)
+
+		const title = formData.get("title")
+		const project = formData.get("project")
+		const date = formData.get("date")
+		const note = formData.get("note")
+
+		const taskObj = {title, project, date, note, isStar: starred}
+		dispatch(changeComponent("allTask"))
+		formRef.current.reset()
+	}
+
 	return (
 		<div className="flex flex-col p-4">
-			<form>
+			<form onSubmit={handleSubmit} ref={formRef}>
 				{/* task name */}
 				<section>
 					<TaskBodyHeading todoHeading="Edit Task" />
