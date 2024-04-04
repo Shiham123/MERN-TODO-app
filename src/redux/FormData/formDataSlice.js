@@ -52,8 +52,14 @@ const formDataSlice = createSlice({
 
 		editedTask: (state, {payload}) => {
 			const {editTaskId, editTaskObj} = payload
-			console.log(editTaskObj)
-			state.tasks[editTaskId] = editTaskObj
+
+			const findTaskObj = state.tasks.find((item) => item.id === editTaskId)
+
+			findTaskObj.title = editTaskObj.title
+			findTaskObj.note = editTaskObj.note
+			findTaskObj.project = editTaskObj.project
+			findTaskObj.date = editTaskObj.date
+			findTaskObj.isStarred = editTaskObj.isStarred
 		},
 
 		deleteProject: (state, {payload}) => {

@@ -1,10 +1,11 @@
 import {useDispatch, useSelector} from "react-redux"
-import TaskBodyHeading from "../../shared/TaskBodyHeading"
-import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
-import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
-import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 import {useRef} from "react"
+import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
+
+import TaskBodyHeading from "../../shared/TaskBodyHeading"
+import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 import {editedTask} from "../../redux/FormData/formDataSlice"
+import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
 
 const EditTask = () => {
 	const formRef = useRef()
@@ -70,6 +71,7 @@ const EditTask = () => {
 						<select
 							name="project"
 							readOnly
+							defaultValue={selectedTask.project}
 							className={`rounded-lg border-none outline-none font-Lexend font-semibold tracking-widest focus:border-none focus:outline-none w-[200px] p-2 my-2 ${
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
@@ -97,7 +99,7 @@ const EditTask = () => {
 						/>
 					</section>
 					<section className="mt-14">
-						{selectedTask.isStarred ? (
+						{starred ? (
 							<RiStarFill
 								className="cursor-pointer"
 								onClick={() => dispatch(changeStar(false))}
