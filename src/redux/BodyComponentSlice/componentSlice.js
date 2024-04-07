@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = {renderElement: ""}
+const initialState = {renderElement: "allTask"}
 
 const componentSlice = createSlice({
 	name: "component",

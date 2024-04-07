@@ -1,17 +1,16 @@
 import {useDispatch, useSelector} from "react-redux"
-import {useRef} from "react"
+import {useRef, useState} from "react"
 import {RiArrowLeftSLine, RiStarFill, RiStarLine} from "react-icons/ri"
 
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
-import {editedTask} from "../../redux/FormData/formDataSlice"
-import {changeStar} from "../../redux/DarkLightSlice/themeSlice"
+import {editedTask, starredTask} from "../../redux/FormData/formDataSlice"
 
 const EditTask = () => {
 	const formRef = useRef()
-
 	const {enabled, starred} = useSelector((state) => state.theme.themeList)
 	const {project, selectedTask} = useSelector((state) => state.formData)
+	const [isTaskStar, setIsTaskStar] = useState(selectedTask.isStarred)
 
 	const dispatch = useDispatch()
 
@@ -28,6 +27,11 @@ const EditTask = () => {
 		dispatch(editedTask({editTaskId: selectedTask.id, editTaskObj: taskObj}))
 		dispatch(changeComponent("allTask"))
 		formRef.current.reset()
+	}
+
+	const handleStarEdit = (starValue, id) => {
+		dispatch(starredTask({starred: starValue, taskId: id}))
+		setIsTaskStar(starValue)
 	}
 
 	return (
@@ -99,17 +103,17 @@ const EditTask = () => {
 						/>
 					</section>
 					<section className="mt-14">
-						{starred ? (
+						{isTaskStar ? (
 							<RiStarFill
+								onClick={() => handleStarEdit(false, selectedTask.id)}
 								className="cursor-pointer"
-								onClick={() => dispatch(changeStar(false))}
 								color="#7a8db0"
 								size={30}
 							/>
 						) : (
 							<RiStarLine
+								onClick={() => handleStarEdit(true, selectedTask.id)}
 								className="cursor-pointer"
-								onClick={() => dispatch(changeStar(true))}
 								color="#7a8db0"
 								size={30}
 							/>

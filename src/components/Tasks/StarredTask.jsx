@@ -8,7 +8,8 @@ import {
 } from "react-icons/ri"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
-import {deleteTask} from "../../redux/FormData/formDataSlice"
+import {deleteTask, editTask} from "../../redux/FormData/formDataSlice"
+import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 
 const StarredTask = () => {
 	const {tasks} = useSelector((state) => state.formData)
@@ -17,6 +18,11 @@ const StarredTask = () => {
 	const dispatch = useDispatch()
 
 	const starTasks = tasks.filter((item) => item.isStarred === true)
+
+	const handleEdit = (id) => {
+		dispatch(changeComponent("editTask"))
+		dispatch(editTask({taskId: id}))
+	}
 
 	return (
 		<div className="flex flex-col p-4">
@@ -52,6 +58,7 @@ const StarredTask = () => {
 						<div className="flex justify-between items-center gap-4">
 							<div className="flex gap-4">
 								<FaEdit
+									onClick={() => handleEdit(id)}
 									className="group-hover:block hidden"
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
