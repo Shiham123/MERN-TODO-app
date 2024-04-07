@@ -1,4 +1,4 @@
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {
 	RiCheckboxBlankCircleLine,
@@ -8,10 +8,13 @@ import {
 } from "react-icons/ri"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
+import {deleteTask} from "../../redux/FormData/formDataSlice"
 
 const StarredTask = () => {
 	const {tasks} = useSelector((state) => state.formData)
-	const {enabled} = useSelector((state) => state.theme)
+	const {enabled} = useSelector((state) => state.theme.themeList)
+
+	const dispatch = useDispatch()
 
 	const starTasks = tasks.filter((item) => item.isStarred === true)
 
@@ -21,7 +24,7 @@ const StarredTask = () => {
 
 			{/* Task items div */}
 			{starTasks?.map((item, index) => {
-				const {title, isCompleted, isStarred, isStar} = item
+				const {title, id, isCompleted, isStarred, isStar} = item
 
 				return (
 					<div
@@ -53,6 +56,7 @@ const StarredTask = () => {
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
 								<MdDelete
+									onClick={() => dispatch(deleteTask({taskId: id}))}
 									className="group-hover:block hidden"
 									color={enabled ? "#7f5bf7" : "#f8917e"}
 								/>
