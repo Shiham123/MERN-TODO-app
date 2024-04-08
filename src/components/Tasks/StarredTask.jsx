@@ -8,7 +8,7 @@ import {
 } from "react-icons/ri"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
-import {deleteTask, editTask} from "../../redux/FormData/formDataSlice"
+import {deleteTask, editTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
 
 const StarredTask = () => {
@@ -30,7 +30,7 @@ const StarredTask = () => {
 
 			{/* Task items div */}
 			{starTasks?.map((item, index) => {
-				const {title, id, isCompleted, isStarred, isStar} = item
+				const {title, id, isCompleted, isStarred} = item
 
 				return (
 					<div
@@ -69,10 +69,18 @@ const StarredTask = () => {
 								/>
 							</div>
 							<div>
-								{isStarred || isStar ? (
-									<RiStarFill color="#7a8db0" size={20} />
+								{isStarred ? (
+									<RiStarFill
+										onClick={() => dispatch(starredTask({starred: false, taskId: id}))}
+										color="#7a8db0"
+										size={20}
+									/>
 								) : (
-									<RiStarLine color="#7a8db0" size={20} />
+									<RiStarLine
+										onClick={() => dispatch(starredTask({starred: true, taskId: id}))}
+										color="#7a8db0"
+										size={20}
+									/>
 								)}
 							</div>
 						</div>

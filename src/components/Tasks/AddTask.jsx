@@ -73,14 +73,20 @@ const AddTask = () => {
 								enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
 							}`}
 						>
-							{project.map((item) => {
-								const {projectTitle, id} = item
-								return (
-									<option className="focus:border-none focus:outline-none" key={id}>
-										{projectTitle}
-									</option>
-								)
-							})}
+							{project.length === 0 ? (
+								<option className="focus:border-none focus:outline-none" key="default">
+									Default
+								</option>
+							) : (
+								project.map((item) => {
+									const {projectTitle, id} = item
+									return (
+										<option className="focus:border-none focus:outline-none" key={id}>
+											{projectTitle}
+										</option>
+									)
+								})
+							)}
 						</select>
 					</section>
 

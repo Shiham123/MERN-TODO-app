@@ -29,9 +29,9 @@ const EditTask = () => {
 		formRef.current.reset()
 	}
 
-	const handleStarEdit = (starValue, id) => {
-		dispatch(starredTask({starred: starValue, taskId: id}))
-		setIsTaskStar(starValue)
+	const handleStarEdit = (starred, taskId) => {
+		dispatch(starredTask({starred, taskId}))
+		setIsTaskStar(starred)
 	}
 
 	return (
