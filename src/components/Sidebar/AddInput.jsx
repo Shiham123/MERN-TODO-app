@@ -5,36 +5,41 @@ import {MdDelete} from "react-icons/md"
 import {FaFolderClosed} from "react-icons/fa6"
 
 import {addedProject, deleteProject, editProject} from "../../redux/FormData/formDataSlice"
-import {showEditProjectInput} from "../../redux/DarkLightSlice/themeSlice"
 
 const AddInput = () => {
-	const {enabled, isProjectInput, isEditProjectInput} = useSelector(
-		(state) => state.theme.themeList,
-	)
+	const {enabled, isProjectInput} = useSelector((state) => state.theme.themeList)
 	const {project} = useSelector((state) => state.formData)
 
 	const [inputField, setInputField] = useState("")
-	const [newProjectTitle, setNewProjectTitle] = useState("")
+	const [editMode, setEditMode] = useState(null)
 	const dispatch = useDispatch()
 
 	const handleSubmit = (event) => {
-		if (event.key == "Enter") {
-			dispatch(addedProject(inputField))
-			setInputField("")
+		if (editMode !== null) {
+			if (event.key === "Enter") {
+				const {id} = editMode
+				dispatch(editProject({projectId: id, newProjectTitle: inputField})),
+					setEditMode(null),
+					setInputField("")
+			}
+		} else {
+			if (event.key === "Enter") {
+				dispatch(addedProject(inputField))
+				setInputField("")
+			}
 		}
 	}
 
-	const handleEditProject = (id, newProjectTitle, event) => {
-		if (event.key === "Enter") {
-			dispatch(editProject({projectId: id, newProjectTitle}))
-			dispatch(showEditProjectInput(false))
-		}
+	const handleEditClick = (id, projectTitle) => {
+		setInputField(projectTitle)
+		setEditMode({id, projectTitle})
 	}
 
 	return (
 		<div className="flex flex-col justify-center items-center mx-4">
 			{isProjectInput && (
 				<input
+					placeholder="type here your project"
 					type="text"
 					onChange={(event) => setInputField(event.target.value)}
 					onKeyDown={handleSubmit}
@@ -56,30 +61,34 @@ const AddInput = () => {
 							key={index}
 						>
 							<div className="flex flex-row justify-between items-center group">
-								{isEditProjectInput ? (
-									<input
-										placeholder={projectTitle}
-										type="text"
-										onKeyDown={(event) => handleEditProject(id, newProjectTitle, event)}
-										value={newProjectTitle}
-										onChange={(event) => setNewProjectTitle(event.target.value)}
-										className={`rounded-lg border-none outline-none w-full  font-Lexend font-semibold tracking-widest ${
-											enabled ? "bg-[#2f2d36] text-white/50" : "bg-[#d3dee3] text-black/50"
-										}`}
-									/>
-								) : (
-									<div className="flex flex-row justify-normal items-center gap-4">
-										<FaFolderClosed />
-										<button className="first-letter:capitalize tracking-wider">
+								<div className="flex flex-row justify-normal items-center gap-4">
+									<FaFolderClosed />
+									{editMode && editMode.id === id ? (
+										<input
+											type="text"
+											value={inputField}
+											onChange={(event) => setInputField(event.target.value)}
+											onKeyDown={handleSubmit}
+											className={`border-none outline-none p-0 font-Lexend font-semibold tracking-widest ${
+												enabled ? "bg-transparent text-white" : "bg-transparent text-black"
+											}`}
+										/>
+									) : (
+										<button
+											className="first-letter:capitalize tracking-wider"
+											onClick={() => handleEditClick(id, projectTitle)}
+										>
 											{projectTitle}
 										</button>
-									</div>
-								)}
+									)}
+								</div>
 
 								<div className="flex gap-4">
 									<FaEdit
-										onClick={() => dispatch(showEditProjectInput(true))}
-										className="group-hover:block hidden"
+										onClick={() => handleEditClick(id, projectTitle)}
+										className={`group-hover:block hidden ${
+											editMode && editMode.id === id ? "text-[#7f5bf7]" : ""
+										}`}
 										color={enabled ? "#7f5bf7" : "#f8917e"}
 									/>
 
