@@ -2,6 +2,7 @@ import {useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
+import {FaFolderClosed} from "react-icons/fa6"
 
 import {addedProject, deleteProject, editProject} from "../../redux/FormData/formDataSlice"
 import {showEditProjectInput} from "../../redux/DarkLightSlice/themeSlice"
@@ -67,7 +68,12 @@ const AddInput = () => {
 										}`}
 									/>
 								) : (
-									<button>{projectTitle}</button>
+									<div className="flex flex-row justify-normal items-center gap-4">
+										<FaFolderClosed />
+										<button className="first-letter:capitalize tracking-wider">
+											{projectTitle}
+										</button>
+									</div>
 								)}
 
 								<div className="flex gap-4">
