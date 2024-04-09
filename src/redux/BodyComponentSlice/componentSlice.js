@@ -1,17 +1,19 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = {renderElement: "allTask"}
+const initialState = {renderElement: "allTask", perTaskId: null}
 
 const componentSlice = createSlice({
 	name: "component",
 	initialState,
 	reducers: {
-		changeComponent: (state, action) => {
-			const {payload} = action
+		changeComponent: (state, {payload}) => {
 			state.renderElement = payload
+		},
+		singleTaskId: (state, {payload}) => {
+			state.perTaskId = payload
 		},
 	},
 })
 
-export const {changeComponent} = componentSlice.actions
+export const {changeComponent, singleTaskId} = componentSlice.actions
 export default componentSlice.reducer

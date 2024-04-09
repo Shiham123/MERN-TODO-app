@@ -15,7 +15,7 @@ import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {completeTask, deleteTask, editTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
-import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice"
+import {changeComponent, singleTaskId} from "../../redux/BodyComponentSlice/componentSlice"
 
 const AllTask = () => {
 	const {enabled} = useSelector((state) => state.theme.themeList)
@@ -26,6 +26,10 @@ const AllTask = () => {
 	const handleEdit = (id) => {
 		dispatch(changeComponent("editTask"))
 		dispatch(editTask({taskId: id}))
+	}
+
+	const handleSingleTask = (destination, taskId) => {
+		dispatch(changeComponent(destination)), dispatch(singleTaskId(taskId))
 	}
 
 	return (
@@ -57,6 +61,7 @@ const AllTask = () => {
 							)}
 
 							<p
+								onClick={() => handleSingleTask("single-task", id)}
 								className={`${enabled ? "text-white/60" : "text-black/60"} ${
 									isCompleted ? "line-through" : ""
 								} font-Lexend text-[17px] font-medium`}

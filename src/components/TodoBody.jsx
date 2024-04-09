@@ -5,6 +5,7 @@ import TodayTask from "./Tasks/TodayTask"
 import WeekTask from "./Tasks/WeekTask"
 import AddTask from "./Tasks/AddTask"
 import EditTask from "./Tasks/EditTask"
+import SingleTask from "./Tasks/SingleTask"
 
 const TodoBody = () => {
 	const {enabled} = useSelector((state) => state.theme.themeList)
@@ -22,6 +23,7 @@ const TodoBody = () => {
 			{renderElement == "weekTask" && <WeekTask />}
 			{renderElement == "addTask" && <AddTask />}
 			{renderElement == "editTask" && <EditTask />}
+			{renderElement == "single-task" && <SingleTask />}
 		</div>
 	)
 }
