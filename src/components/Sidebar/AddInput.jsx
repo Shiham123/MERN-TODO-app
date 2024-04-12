@@ -5,6 +5,7 @@ import {MdDelete} from "react-icons/md"
 import {FaFolderClosed} from "react-icons/fa6"
 
 import {addedProject, deleteProject, editProject} from "../../redux/FormData/formDataSlice"
+import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice.js"
 
 const AddInput = () => {
 	const {enabled, isProjectInput} = useSelector((state) => state.theme.themeList)
@@ -66,7 +67,7 @@ const AddInput = () => {
 									{editMode && editMode.id === id ? (
 										<input
 											type="text"
-											value={inputField}
+											value={projectTitle}
 											onChange={(event) => setInputField(event.target.value)}
 											onKeyDown={handleSubmit}
 											className={`border-none outline-none p-0 font-Lexend font-semibold tracking-widest ${
@@ -75,8 +76,8 @@ const AddInput = () => {
 										/>
 									) : (
 										<button
+											onClick={() => dispatch(changeComponent("project-task"))}
 											className="first-letter:capitalize tracking-wider"
-											onClick={() => handleEditClick(id, projectTitle)}
 										>
 											{projectTitle}
 										</button>
