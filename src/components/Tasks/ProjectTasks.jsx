@@ -1,20 +1,19 @@
-import {useSelector, useDispatch} from "react-redux"
-
+import {useDispatch, useSelector} from "react-redux"
+import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {
 	RiCheckboxBlankCircleLine,
 	RiCheckboxCircleFill,
 	RiStarFill,
 	RiStarLine,
 } from "react-icons/ri"
-import TaskBodyHeading from "../../shared/TaskBodyHeading"
 import {completeTask, deleteTask, editTask, starredTask} from "../../redux/FormData/formDataSlice"
 import {changeComponent, singleTaskId} from "../../redux/BodyComponentSlice/componentSlice"
 import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 
 const ProjectTasks = () => {
+	const {filteredTasks} = useSelector((state) => state.formData)
 	const {enabled} = useSelector((state) => state.theme.themeList)
-	const {tasks} = useSelector((state) => state.formData)
 
 	const dispatch = useDispatch()
 
@@ -29,10 +28,9 @@ const ProjectTasks = () => {
 
 	return (
 		<div className="flex flex-col p-4">
-			<TaskBodyHeading todoHeading="All Task" />
+			<TaskBodyHeading todoHeading="Project Task" />
 
-			{/* Task items div */}
-			{tasks?.map((item, index) => {
+			{filteredTasks?.map((item, index) => {
 				const {title, id, isCompleted, isStarred, isStar} = item
 
 				return (

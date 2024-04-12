@@ -3,7 +3,7 @@ import {projectList, taskList} from "../../../public/taskList"
 
 const formDataSlice = createSlice({
 	name: "formData",
-	initialState: {tasks: taskList, project: projectList, selectedTask: []},
+	initialState: {tasks: taskList, project: projectList, selectedTask: [], filteredTasks: []},
 	reducers: {
 		createTask: (state, {payload}) => {
 			if (state.tasks.length == 0) {
@@ -77,6 +77,11 @@ const formDataSlice = createSlice({
 				state.tasks = filterTask
 			}
 		},
+
+		projectTask: (state, {payload}) => {
+			const {projectTitle} = payload
+			state.filteredTasks = state.tasks.filter((item) => item.project === projectTitle)
+		},
 	},
 })
 
@@ -90,5 +95,6 @@ export const {
 	deleteProject,
 	deleteTask,
 	editedTask,
+	projectTask,
 } = formDataSlice.actions
 export default formDataSlice.reducer

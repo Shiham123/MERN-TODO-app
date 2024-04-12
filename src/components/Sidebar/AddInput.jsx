@@ -4,7 +4,12 @@ import {FaEdit} from "react-icons/fa"
 import {MdDelete} from "react-icons/md"
 import {FaFolderClosed} from "react-icons/fa6"
 
-import {addedProject, deleteProject, editProject} from "../../redux/FormData/formDataSlice"
+import {
+	addedProject,
+	deleteProject,
+	editProject,
+	projectTask,
+} from "../../redux/FormData/formDataSlice"
 import {changeComponent} from "../../redux/BodyComponentSlice/componentSlice.js"
 
 const AddInput = () => {
@@ -34,6 +39,11 @@ const AddInput = () => {
 	const handleEditClick = (id, projectTitle) => {
 		setInputField(projectTitle)
 		setEditMode({id, projectTitle})
+	}
+
+	const handleProjectTask = (projectTitle) => {
+		dispatch(changeComponent("project-task"))
+		dispatch(projectTask({projectTitle}))
 	}
 
 	return (
@@ -76,7 +86,7 @@ const AddInput = () => {
 										/>
 									) : (
 										<button
-											onClick={() => dispatch(changeComponent("project-task"))}
+											onClick={() => handleProjectTask(projectTitle)}
 											className="first-letter:capitalize tracking-wider"
 										>
 											{projectTitle}

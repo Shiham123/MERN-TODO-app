@@ -5,7 +5,7 @@ const taskList = [
 ]
 
 const themeList = {
-	enabled: false,
+	enabled: true,
 	closeNavbar: false,
 	starred: false,
 	completedTask: false,
