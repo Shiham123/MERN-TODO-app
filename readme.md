@@ -28,4 +28,4 @@
 - **ESLint** for set custom rules for practice writing better maintainable and readable code.
 - **Prettier** For more organized way show code.
 
-#### To run this project fist clone it then <code> npm install </code> and then <code> npm run dev </code>
+#### To run this project fist clone it then <code>npm install</code> and then <code>npm run dev</code>
